@@ -13,4 +13,17 @@ class TaskTest extends TestCase
         $response = $this->get(route('tasks.index'));
         $response->assertStatus(200);
     }
+
+    public function test_task_can_be_created(): void
+    {
+        $newTask = [
+            'title'        => 'Initialize project',
+            'is_completed' => false,
+        ];
+
+        $this->post(route('tasks.store'), $newTask)
+            ->assertSuccessful(201);
+
+        $this->assertDatabaseHas('tasks', $newTask);
+    }
 }
