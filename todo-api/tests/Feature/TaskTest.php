@@ -82,8 +82,6 @@ class TaskTest extends TestCase
                         'id',
                         'title',
                         'is_completed',
-                        'created_at',
-                        'updated_at',
                     ]
                 ]
             ])
