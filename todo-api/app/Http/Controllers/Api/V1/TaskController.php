@@ -39,8 +39,9 @@ class TaskController extends Controller
         return new TaskResource($task);
     }
 
-    public function destroy(string $id)
+    public function destroy(Task $task)
     {
-        //
+        $task->delete();
+        return new TaskResource($task);
     }
 }
