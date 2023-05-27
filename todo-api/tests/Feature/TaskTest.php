@@ -127,4 +127,16 @@ class TaskTest extends TestCase
         $this->assertEquals($updatedTask['title'], $task->title);
         $this->assertEquals($updatedTask['is_completed'], $task->is_completed);
     }
+
+    public function test_task_can_be_deleted(): void
+    {
+        $task = Task::factory()->create();
+
+        $this->assertModelExists($task);
+
+        $this->delete(route('tasks.destroy', $task->id))
+            ->assertStatus(200);
+
+        $this->assertModelMissing($task);
+    }
 }
