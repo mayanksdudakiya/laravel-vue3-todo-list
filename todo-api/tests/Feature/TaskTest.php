@@ -102,4 +102,29 @@ class TaskTest extends TestCase
                 ]
             ]);
     }
+
+    public function test_task_can_be_updated(): void
+    {
+        $task = Task::factory()->create();
+
+        $updatedTask = [
+            'title'        => 'updated task',
+            'is_completed' => true,
+        ];
+
+        $this->put(route('tasks.update', $task->id), $updatedTask)
+            ->assertStatus(200)
+            ->assertExactJson([
+                'data' => [
+                    'id' => $task->id,
+                    'title' => $updatedTask['title'],
+                    'is_completed' => $updatedTask['is_completed'],
+                ]
+            ]);
+
+        $task->refresh();
+
+        $this->assertEquals($updatedTask['title'], $task->title);
+        $this->assertEquals($updatedTask['is_completed'], $task->is_completed);
+    }
 }
