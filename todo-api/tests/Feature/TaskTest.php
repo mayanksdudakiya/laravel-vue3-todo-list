@@ -87,4 +87,19 @@ class TaskTest extends TestCase
             ])
             ->assertJsonCount(10, 'data');
     }
+
+    public function test_task_can_be_shown(): void
+    {
+        $task = Task::factory()->create();
+
+        $this->get(route('tasks.show', $task->id))
+            ->assertStatus(200)
+            ->assertJsonStructure([
+                'data' => [
+                    'id',
+                    'title',
+                    'is_completed',
+                ]
+            ]);
+    }
 }
