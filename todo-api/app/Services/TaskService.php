@@ -10,4 +10,9 @@ class TaskService
     {
         return Task::create($newTask);
     }
+
+    public function update(array $updatedTask, Task $task): bool
+    {
+        return $task->update($updatedTask);
+    }
 }

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api\V1;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\TaskStoreRequest;
+use App\Http\Requests\TaskUpdateRequest;
 use App\Http\Resources\TaskResource;
 use App\Models\Task;
 use App\Services\TaskService;
@@ -14,8 +15,7 @@ use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 class TaskController extends Controller
 {
     public function __construct(private TaskService $taskService)
-    {
-    }
+    {}
 
     public function index(): AnonymousResourceCollection
     {
@@ -33,8 +33,9 @@ class TaskController extends Controller
         return new TaskResource($task);
     }
 
-    public function update(Request $request, Task $task): TaskResource
+    public function update(TaskUpdateRequest $request, Task $task): TaskResource
     {
+        $this->taskService->update($request->validated(), $task);
         return new TaskResource($task);
     }
 
