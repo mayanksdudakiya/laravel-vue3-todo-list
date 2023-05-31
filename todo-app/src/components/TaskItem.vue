@@ -1,11 +1,11 @@
 <script setup>
 import CheckboxInput from './CheckboxInput.vue';
-import TodoLabel from './TodoLabel.vue';
+import TaskLabel from './TaskLabel.vue';
 </script>
 
 <template>
     <div>
         <CheckboxInput />
-        <TodoLabel><slot></slot></TodoLabel>
+        <TaskLabel><slot></slot></TaskLabel>
     </div>
 </template>
