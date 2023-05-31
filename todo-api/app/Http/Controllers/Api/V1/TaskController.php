@@ -8,14 +8,13 @@ use App\Http\Requests\TaskUpdateRequest;
 use App\Http\Resources\TaskResource;
 use App\Models\Task;
 use App\Services\TaskService;
-use Illuminate\Http\JsonResponse;
-use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 
 class TaskController extends Controller
 {
     public function __construct(private TaskService $taskService)
-    {}
+    {
+    }
 
     public function index(): AnonymousResourceCollection
     {
@@ -39,7 +38,7 @@ class TaskController extends Controller
         return new TaskResource($task);
     }
 
-    public function destroy(Task $task)
+    public function destroy(Task $task): TaskResource
     {
         $task->delete();
         return new TaskResource($task);
