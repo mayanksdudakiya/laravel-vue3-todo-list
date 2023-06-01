@@ -1,6 +1,6 @@
 <script setup>
-import CheckboxInput from './CheckboxInput.vue';
-import TaskLabel from './TaskLabel.vue';
+import CheckboxInput from '@components/CheckboxInput.vue';
+import TaskLabel from '@components/TaskLabel.vue';
 </script>
 
 <template>
