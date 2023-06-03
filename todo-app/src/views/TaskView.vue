@@ -2,11 +2,13 @@
 import TaskIcon from '@components/icons/TaskIcon.vue'
 import TaskItem from '@components/TaskItem.vue'
 import AddNewTask from '@components/AddNewTask.vue'
-import { onMounted, provide } from 'vue'
+import { onBeforeMount } from 'vue'
 import  useTasks  from '@composables/tasks'
 
 const { tasks, allTasks } = useTasks();
-onMounted(allTasks);
+onBeforeMount(() => {
+	allTasks()
+})
 </script>
 
 <template>
@@ -18,7 +20,7 @@ onMounted(allTasks);
     				<h4 class="font-semibold ml-3 text-lg">Tasks List</h4>
     			</div>
 
-				<TaskItem v-for="task in tasks.data" :task-id="task.id" :key="task.id">{{ task.title }}</TaskItem>
+				<TaskItem v-for="task in tasks" :task-id="task.id" :key="task.id">{{ task.title }}</TaskItem>
 
                 <AddNewTask />
     		</div>
