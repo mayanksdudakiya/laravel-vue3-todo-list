@@ -49,10 +49,29 @@ export default function useTasks() {
         }
     };
 
+    const completeUncompleteTask = async (taskId, isCompleted) => {
+        try {
+            const response = await fetch(`${baseUrl}/tasks/${taskId}`, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(
+                    { is_completed: isCompleted }
+                )
+            });
+
+            console.log(response);
+        } catch (error) {
+            console.log(error);
+        }
+    };
+
     return {
         tasks,
         allTasks,
         insertNewTask,
-        deleteTask
+        deleteTask,
+        completeUncompleteTask
     };
 }
