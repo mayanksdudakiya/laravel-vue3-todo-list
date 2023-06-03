@@ -1,7 +1,7 @@
 import { ref } from 'vue'
 
 export default function useTasks() {
-    const task = ref([]);
+    const addNewTask = ref([]);
     const tasks = ref([]);
     const errors = ref('');
 
@@ -15,6 +15,7 @@ export default function useTasks() {
     };
 
     return {
+        addNewTask,
         tasks,
         allTasks
     };
