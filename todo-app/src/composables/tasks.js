@@ -35,9 +35,24 @@ export default function useTasks() {
         }
     };
 
+    const deleteTask = async (taskId, taskIndex) => {
+        try {
+            const response = await fetch(`${baseUrl}/tasks/${taskId}`, {
+                method: 'DELETE',
+            });
+
+            if (taskIndex !== -1) {
+                tasks.value.splice(taskIndex, 1);
+            }
+        } catch (error) {
+            console.log(error);
+        }
+    };
+
     return {
-        insertNewTask,
         tasks,
-        allTasks
+        allTasks,
+        insertNewTask,
+        deleteTask
     };
 }

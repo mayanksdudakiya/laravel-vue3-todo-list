@@ -20,7 +20,7 @@ onBeforeMount(() => {
     				<h4 class="font-semibold ml-3 text-lg">Tasks List</h4>
     			</div>
 
-				<TaskItem v-for="task in tasks" :task-id="task.id" :key="task.id">{{ task.title }}</TaskItem>
+				<TaskItem v-for="(task, index) in tasks" :task-id="task.id" :task-index="index" :key="task.id">{{ task.title }}</TaskItem>
 
                 <AddNewTask />
     		</div>
