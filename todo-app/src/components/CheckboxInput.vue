@@ -2,13 +2,13 @@
 import { defineProps } from 'vue';
 
 defineProps({
-    taskId: {
-        type: Number,
+    task: {
+        type: Object,
         required: true
     }
 });
 </script>
 
 <template>
-    <input class="hidden" type="checkbox" :id="taskId"/>
+    <input class="hidden" type="checkbox" :id="task.id" :checked="task.is_completed"/>
 </template>
